@@ -4,7 +4,6 @@ import "./index.css";
 import RegisterScreen from "./screens/RegisterScreen.js";
 import SigninScreen from "./screens/SigninScreen.js";
 import HomeScreen from "./screens/HomeScreen.js";
-import ForgotScreen from "./screens/ForgotScreen.js";
 import Home from "./components/Home.js";
 import Authentication from "./screens/Authentication.js";
 import Container from "react-bootstrap/Container";
@@ -34,7 +33,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Authentication />}></Route>
         <Route path="/register" element={<RegisterScreen />}></Route>
-        <Route path="/forgotpassword" element={<ForgotScreen />}></Route>
         <Route path="/dashboard" element={<HomeScreen />}></Route>
         <Route path="/signin" element={<SigninScreen></SigninScreen>}></Route>
         <Route path="/home" element={<Home></Home>}></Route>

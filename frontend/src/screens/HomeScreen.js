@@ -10,12 +10,11 @@ export default function HomeScreen() {
   const [showScreen, setShowScreen] = useState("");
 
   const screenHandler = (props) => {
-    console.log("props", props);
     setShowScreen(props);
   };
   return (
     <>
-      <div className="grid-container">
+      <div className="grid-container1">
         <Sidebar onScreen={screenHandler} />
         {showScreen == "home" && <Home></Home>}
       </div>

@@ -32,7 +32,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar, onScreen }) {
             <BsGrid1X2Fill className="icon" /> Dashboard
           </Link>
         </li>
-        <li className="sidebar-list-item">
+        {/* <li className="sidebar-list-item">
           <a href="">
             <BsFillArchiveFill className="icon" /> Products
           </a>
@@ -61,7 +61,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar, onScreen }) {
           <a href="">
             <BsFillGearFill className="icon" /> Setting
           </a>
-        </li>
+        </li> */}
       </ul>
     </aside>
   );

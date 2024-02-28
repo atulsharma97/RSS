@@ -27,17 +27,13 @@ const Authentication = () => {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1, x: 0 }}
                     exit={{ scale: 0 }}
-                  >
-                    Create your account
-                  </motion.h2>
+                  ></motion.h2>
                 ) : (
                   <motion.h2
                     initial={{ scale: 0 }}
                     animate={{ scale: 0.9, x: 0 }}
                     exit={{ scale: 1 }}
-                  >
-                    Sign in to GoSoft
-                  </motion.h2>
+                  ></motion.h2>
                 )}
 
                 <ul
