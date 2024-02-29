@@ -29,7 +29,7 @@ function App() {
         <Navbar bg="dark" data-bs-theme="dark">
           {userInfo ? (
             <button onClick={handleToggle} className="side-btn">
-              <i class="fa-solid fa-bars"></i>
+              <i className="fa-solid fa-bars"></i>
             </button>
           ) : null}
 

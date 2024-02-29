@@ -866,10 +866,10 @@ input[type='checkbox']:not(old):checked + label > span:before {
   margin-bottom: 20px;
   background-color: white;
 }
-.MuiDataGrid-menuIcon {
+/* .MuiDataGrid-menuIcon {
   visibility: visible !important;
-}
-.MuiDataGrid-columnHeaderTitleContainer {
+} */
+/*.MuiDataGrid-columnHeaderTitleContainer {
   justify-content: center !important;
   visibility: visible !important;
 }
@@ -892,7 +892,7 @@ input[type='checkbox']:not(old):checked + label > span:before {
 }
 .css-ltf0zy-MuiDataGrid-iconButtonContainer {
   width: unset !important;
-}
+} */
 /* MuiDataGrid-columnSeparator--sideRight */
 
 /* MuiDataGrid-columnHeader--sortable MuiDataGrid-withBorderColor */
@@ -914,10 +914,10 @@ input[type='checkbox']:not(old):checked + label > span:before {
 } */
 /* .css-az8st9-MuiDataGrid-root
   .MuiDataGrid-columnHeader */
-.MuiDataGrid-iconButtonContainer {
+/* .MuiDataGrid-iconButtonContainer {
   visibility: visible !important;
   width: auto;
-}
+} */
 .side-btn {
   background: transparent;
   border: none;
