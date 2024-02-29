@@ -1,23 +1,23 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { DataGrid } from "@mui/x-data-grid";
-import { useNavigate } from "react-router-dom";
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { DataGrid } from '@mui/x-data-grid'
+import { useNavigate } from 'react-router-dom'
 
 const columns = [
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "name", headerName: "नाम", width: 250 },
-  { field: "age", headerName: "उम्र", width: 130 },
-  { field: "address", headerName: "पता", width: 200 },
-  { field: "city", headerName: "शहर", width: 130 },
-  { field: "nagar", headerName: "नगर", width: 130 },
-  { field: "shikshan", headerName: "शिक्षण", width: 130 },
-  { field: "occupation", headerName: "व्यवसाय", width: 130 },
-  { field: "vibhag", headerName: "विभाग", width: 130 },
-  { field: "daitva", headerName: "दायित्व", width: 130 },
-  { field: "shaka_nagar", headerName: "शाखा नगर", width: 130 },
-  { field: "basti", headerName: "बस्ती", width: 130 },
-  { field: "shaka", headerName: "शाखा", width: 130 },
-  { field: "phone_no", headerName: "मों.नंबर", width: 130 },
+  { field: 'id', headerName: 'ID', width: 70 },
+  { field: 'user_name', headerName: 'नाम', width: 250 },
+  { field: 'age', headerName: 'उम्र', width: 130 },
+  { field: 'address', headerName: 'पता', width: 200 },
+  { field: 'city', headerName: 'शहर', width: 130 },
+  { field: 'nagar', headerName: 'नगर', width: 130 },
+  { field: 'shikshan_name', headerName: 'शिक्षण', width: 130 },
+  { field: 'accupation', headerName: 'व्यवसाय', width: 130 },
+  { field: 'vibhag_name', headerName: 'विभाग', width: 130 },
+  { field: 'daitva_name', headerName: 'दायित्व', width: 130 },
+  { field: 'shaka_nagar_name', headerName: 'शाखा नगर', width: 130 },
+  { field: 'basti_name', headerName: 'बस्ती', width: 130 },
+  { field: 'shaka_name', headerName: 'शाखा', width: 130 },
+  { field: 'phone_no', headerName: 'मों.नंबर', width: 130 },
 
   // {
   //   field: "age",
@@ -34,7 +34,7 @@ const columns = [
   //   valueGetter: (params) =>
   //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
   // },
-];
+]
 
 // const rows = [
 //   { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
@@ -49,31 +49,31 @@ const columns = [
 // ];
 
 function Home() {
-  const [user, SetUser] = useState([]);
-  const navigate = useNavigate();
+  const [user, SetUser] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get("http://localhost/CI/public/users");
-        console.log("response", data);
+        const { data } = await axios.get('http://localhost/CI/public/users')
+        console.log('response', data)
         if (data.status === 200) {
-          SetUser(data.data);
+          SetUser(data.data)
           // Redirect to another page upon success
           // navigate('/')
         }
       } catch (error) {
         // Handle errors
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error)
       }
-    };
+    }
 
-    fetchData(); // Call the fetchData function
-  }, []); // Ensure that the dependency array is provided and empty for a one-time effect
+    fetchData() // Call the fetchData function
+  }, []) // Ensure that the dependency array is provided and empty for a one-time effect
 
   return (
     <>
-      <div style={{ height: "60vh", width: "70%" }} className="data-table">
+      <div style={{ height: '60vh', width: '70%' }} className="data-table">
         <DataGrid
           rows={user}
           columns={columns}
@@ -87,7 +87,7 @@ function Home() {
         />
       </div>
     </>
-  );
+  )
 }
 
-export default Home;
+export default Home

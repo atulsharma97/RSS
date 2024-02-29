@@ -1,61 +1,68 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
-import axios from "axios";
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import Container from 'react-bootstrap/Container'
+import Navbar from 'react-bootstrap/Navbar'
+import axios from 'axios'
 
 export default function RegisterScreen() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const [user, setUser] = useState({
-    name: "",
-    age: "",
-    phone_no: "",
-    address: "",
-    city: "",
-    nagar: "",
-    occupation: "",
-    shaka_nagar: "",
-    image: "",
-    basti: "",
-    shaka: "",
-    shikshan: "",
-    vibhag: "",
-    daitva: "",
-    daitva_of: "",
-  });
-  const [imageShow, setImageShow] = useState("");
-  const [vibhag, setvibhag] = useState([]);
-  const [daitva, setDaitva] = useState([]);
-  const [filteredDaitva, setFilteredDaitva] = useState([]);
-  const [shakhanagar, setShakhanagar] = useState([]);
-  const [basti, setBasti] = useState([]);
-  const [shaka, setShaka] = useState([]);
-  const [shikshan, setShikshan] = useState([]);
-  const [selectedShakaNagar, setSelectedShakaNagar] = useState("");
-  const [selectedBasti, setSelectedBasti] = useState("");
-  console.log("selectedShakaNagar", selectedShakaNagar);
-  console.log("basti", basti);
+    name: '',
+    age: '',
+    phone_no: '',
+    address: '',
+    city: '',
+    nagar: '',
+    occupation: '',
+    shaka_nagar: '',
+    image: '',
+    basti: '',
+    shaka: '',
+    shikshan: '',
+    vibhag: '',
+    daitva: '',
+    daitva_of: '',
+  })
+  const [imageShow, setImageShow] = useState('')
+  const [vibhag, setvibhag] = useState([])
+  const [daitva, setDaitva] = useState([])
+  const [filteredDaitva, setFilteredDaitva] = useState([])
+  const [shakhanagar, setShakhanagar] = useState([])
+  const [basti, setBasti] = useState([])
+  const [shaka, setShaka] = useState([])
+  const [shikshan, setShikshan] = useState([])
+  const [selectedShakaNagar, setSelectedShakaNagar] = useState('')
+  const [selectedBasti, setSelectedBasti] = useState('')
+  console.log('selectedShakaNagar', selectedShakaNagar)
+  console.log('basti', basti)
+  console.log('filteredDaitva', filteredDaitva)
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
+    const { name, value, files } = e.target
 
-    if (name === "shaka_nagar") {
-      setSelectedShakaNagar(value);
+    if (name === 'shaka_nagar') {
+      setUser((prevState) => ({ ...prevState, basti: '' }))
+      setUser((prevState) => ({ ...prevState, shaka: '' }))
+      setBasti([])
+      setShaka([])
+      setSelectedShakaNagar(value)
     }
-    if (name === "basti") {
-      const valuebasti = value !== "null" ? value : null;
-      setSelectedBasti(valuebasti);
+    if (name === 'basti') {
+      setUser((prevState) => ({ ...prevState, shaka: '' }))
+      const valuebasti = value !== 'null' ? value : null
+      setShaka([])
+      setSelectedBasti(valuebasti)
     }
-    // if (name === "shaka") {
-    //   setShaka(value !== "null" ? value : null);
-    // }
-    if (name === "phone_no") {
-      const phoneNumber = value.replace(/\D/g, "");
+    if (name === 'shaka') {
+      // setShaka(value !== 'null' ? value : null)
+    }
+    if (name === 'phone_no') {
+      const phoneNumber = value.replace(/\D/g, '')
       console.log(
-        "Phone number after removing non-digit characters:",
+        'Phone number after removing non-digit characters:',
         phoneNumber
-      );
+      )
 
       // Limit the input to 10 characters
       // const formattedPhoneNumber = phoneNumber.slice(0, 10);
@@ -63,78 +70,77 @@ export default function RegisterScreen() {
       // console.log("Updated user state:", user);
     }
 
-    if (name === "image") {
+    if (name === 'image') {
       setUser((prevState) => ({
         ...prevState,
         image: files[0],
-      }));
-      setImageShow(window.URL.createObjectURL(files[0]));
+      }))
+      setImageShow(window.URL.createObjectURL(files[0]))
     } else {
-      setUser((prevState) => ({ ...prevState, [name]: value }));
-      if (name === "daitva_of") {
-        console.log("karan", daitva);
+      setUser((prevState) => ({ ...prevState, [name]: value }))
+      if (name === 'daitva_of') {
+        setUser((prevState) => ({ ...prevState, daitva: '' }))
+        const sortedDaitva = daitva.filter((item) => item.daitva_of == value)
+        console.log('karan', sortedDaitva)
 
-        const sortedDaitva = daitva.filter((item) => item.daitva_of == value);
-        console.log("karan", sortedDaitva);
-
-        setFilteredDaitva(sortedDaitva);
+        setFilteredDaitva(sortedDaitva)
       }
     }
-  };
+  }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const vibhagResponse = await axios.get(
-          "http://localhost/CI/public/get/vibhag"
-        );
+          'http://localhost/CI/public/get/vibhag'
+        )
         const daitvaResponse = await axios.get(
-          "http://localhost/CI/public/get/daitva"
-        );
+          'http://localhost/CI/public/get/daitva'
+        )
         const shakhanagarResponse = await axios.get(
-          "http://localhost/CI/public/get/shaka-nagar"
-        );
-        const bastiResponse = await axios.get(
-          "http://localhost/CI/public/get/basti"
-        );
-        const shakaResponse = await axios.get(
-          "http://localhost/CI/public/get/shaka"
-        );
+          'http://localhost/CI/public/get/shaka-nagar'
+        )
+        // const bastiResponse = await axios.get(
+        //   'http://localhost/CI/public/get/basti'
+        // )
+        // const shakaResponse = await axios.get(
+        //   'http://localhost/CI/public/get/shaka'
+        // )
         const shikshanResponse = await axios.get(
-          "http://localhost/CI/public/get/shikshan"
-        );
+          'http://localhost/CI/public/get/shikshan'
+        )
 
-        console.log("vibhag response", vibhagResponse.data);
+        console.log('vibhag response', vibhagResponse.data)
         // console.log("daitva response", daitvaResponse.data);
         if (vibhagResponse.data.status === 200) {
-          setvibhag(vibhagResponse.data.data);
+          setvibhag(vibhagResponse.data.data)
 
           // Redirect to another page upon success
           // navigate('/')
         }
         if (daitvaResponse.data.status === 200) {
-          setDaitva(daitvaResponse.data.data);
+          setDaitva(daitvaResponse.data.data)
         }
         if (shakhanagarResponse.data.status === 200) {
-          setShakhanagar(shakhanagarResponse.data.data);
+          setShakhanagar(shakhanagarResponse.data.data)
         }
-        if (shakhanagarResponse.data.status === 200) {
-          setBasti(bastiResponse.data.data);
-        }
-        if (shakaResponse.data.status === 200) {
-          setShaka(shakaResponse.data.data);
-        }
+        // if (shakhanagarResponse.data.status === 200) {
+        //   setBasti(bastiResponse.data.data)
+        // }
+        // if (shakaResponse.data.status === 200) {
+        //   setShaka(shakaResponse.data.data)
+        // }
         if (shikshanResponse.data.status === 200) {
-          setShikshan(shikshanResponse.data.data);
+          setShikshan(shikshanResponse.data.data)
         }
       } catch (error) {
         // Handle errors
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error)
       }
-    };
+    }
 
-    fetchData(); // Call the fetchData function
-  }, []); // Ensure that the dependency array is provided and empty for a one-time effect
+    fetchData() // Call the fetchData function
+  }, []) // Ensure that the dependency array is provided and empty for a one-time effect
   // useEffect(() => {
   //   const fetchShakaData = async () => {
   //     await axios.get(`http://localhost/CI/public/get/shaka/by-basti`);
@@ -145,24 +151,24 @@ export default function RegisterScreen() {
     const fetchBastiData = async () => {
       const { data } = await axios.get(
         `http://localhost/CI/public/get/basti/by-shaka-nagar/${selectedShakaNagar}`
-      );
-      setBasti(data.data);
-    };
-    if (selectedShakaNagar && selectedShakaNagar !== null) {
-      fetchBastiData(selectedShakaNagar);
+      )
+      setBasti(data.data)
     }
-  }, [selectedShakaNagar]);
+    if (selectedShakaNagar && selectedShakaNagar !== null) {
+      fetchBastiData(selectedShakaNagar)
+    }
+  }, [selectedShakaNagar])
   useEffect(() => {
     const fetchshakaData = async () => {
       const { data } = await axios.get(
         `http://localhost/CI/public/get/shaka/by-basti/${selectedBasti}`
-      );
-      setShaka(data.data);
-    };
-    if (selectedBasti && selectedBasti !== null) {
-      fetchshakaData(selectedBasti);
+      )
+      setShaka(data.data)
     }
-  }, [selectedBasti]);
+    if (selectedBasti && selectedBasti !== null) {
+      fetchshakaData(selectedBasti)
+    }
+  }, [selectedBasti])
 
   // const fetchShakaData = async (bastiId) => {
   //   try {
@@ -182,48 +188,49 @@ export default function RegisterScreen() {
   //   );
   // };
 
-  console.log("outer user", user);
+  console.log('outer user', user)
 
   const submitHandler = async (e) => {
-    e.preventDefault();
-    console.log("user", user);
+    e.preventDefault()
+    console.log('user', user)
     try {
-      const formDatas = new FormData();
+      const formDatas = new FormData()
 
-      formDatas.append("file", user.image);
-      formDatas.append("name", user.name);
-      formDatas.append("age", user.age);
-      formDatas.append("phone_no", user.phone_no);
-      formDatas.append("address", user.address);
-      formDatas.append("city", user.city);
-      formDatas.append("nagar", user.nagar);
-      formDatas.append("accupation", user.occupation);
-      formDatas.append("shaka_nagar", user.shaka_nagar);
-      formDatas.append("basti", user.basti);
-      formDatas.append("shaka", user.shaka);
-      formDatas.append("shikshan", user.shikshan);
-      formDatas.append("vibhag", user.vibhag);
-      formDatas.append("daitva", user.daitva);
-      formDatas.append("daitva_of", user.daitva_of);
-      formDatas.append("role", "user");
-      formDatas.append("near_by", "near_by");
+      formDatas.append('file', user.image)
+      formDatas.append('name', user.name)
+      formDatas.append('age', user.age)
+      formDatas.append('phone_no', user.phone_no)
+      formDatas.append('address', user.address)
+      formDatas.append('city', user.city)
+      formDatas.append('nagar', user.nagar)
+      formDatas.append('accupation', user.occupation)
+      formDatas.append('shaka_nagar', user.shaka_nagar)
+      formDatas.append('basti', user.basti)
+      formDatas.append('shaka', user.shaka)
+      formDatas.append('shikshan', user.shikshan)
+      formDatas.append('vibhag', user.vibhag)
+      formDatas.append('daitva', user.daitva)
+      formDatas.append('daitva_of', user.daitva_of)
+      formDatas.append('role', 'user')
+      formDatas.append('near_by', 'near_by')
 
-      console.log("formdata", formDatas);
+      console.log('formdata', formDatas)
 
       const response = await axios.post(
-        "http://localhost/CI/public/users/create",
+        'http://localhost/CI/public/users/create',
         formDatas,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            'Content-Type': 'multipart/form-data',
           },
         }
-      );
+      )
+      navigate('/welcomepage')
     } catch (error) {
       // console.log("formDatas", formDatas);
       // navigate("/");
     }
-  };
+  }
   return (
     <div>
       <div className="signup-main">
@@ -363,9 +370,11 @@ export default function RegisterScreen() {
                           name="daitva_of"
                           id="daitva_of"
                           className="dropdown form-g form-input"
-                          required={!user.daitva_of}
+                          // required={!user.daitva_of}
+                          required
                           onChange={handleChange}
-                          defaultValue="" // Ensure no option is selected by default
+                          // defaultValue="" // Ensure no option is selected by default
+                          value={user.daitva_of}
                         >
                           <option value="" disabled hidden>
                             दायित्व क्षेत्र चुनें
@@ -378,26 +387,32 @@ export default function RegisterScreen() {
                           name="daitva"
                           id="daitva"
                           className="dropdown form-g form-input"
-                          required={!user?.daitva}
+                          // required={!user?.daitva}
+                          required
                           onChange={handleChange}
-                          defaultValue=""
+                          value={user.daitva}
                         >
                           <option value="" disabled hidden>
                             दायित्व चुनें
                           </option>
-                          {filteredDaitva.map((daitva, index) => (
-                            <option key={index.id} value={daitva.id}>
-                              {daitva.name}
-                            </option>
-                          ))}
+                          {filteredDaitva.length > 0 ? (
+                            filteredDaitva.map((daitva, index) => (
+                              <option key={index.id} value={daitva.id}>
+                                {daitva.name}
+                              </option>
+                            ))
+                          ) : (
+                            <option value="null">कोई दायित्व नही</option>
+                          )}
                         </select>
                         <select
                           name="shaka_nagar"
                           id="shaka_nagar"
                           className="dropdown form-g form-input"
-                          required={!user?.shaka_nagar}
+                          // required={!user?.shaka_nagar}
                           onChange={handleChange}
-                          defaultValue=""
+                          // defaultValue=""
+                          value={user.shaka_nagar}
                         >
                           <option value="" disabled hidden>
                             शाखा नगर चुनें
@@ -412,9 +427,11 @@ export default function RegisterScreen() {
                           name="basti"
                           id="basti"
                           className="dropdown form-g form-input"
-                          required={!user?.basti}
+                          // required={!user?.basti}
+                          required
+                          value={user.basti}
                           onChange={handleChange}
-                          defaultValue=""
+                          // defaultValue=""
                         >
                           <option value="" disabled hidden>
                             बस्ती चुनें
@@ -433,21 +450,23 @@ export default function RegisterScreen() {
                           name="shaka"
                           id="shaka"
                           className="dropdown form-g form-input"
-                          required={!user?.shaka}
+                          // required={!user?.shaka}
+                          required
                           onChange={handleChange}
-                          defaultValue=""
+                          // defaultValue=""
+                          value={user.shaka}
                         >
                           <option value="" disabled hidden>
                             शाखा चुनें
                           </option>
-                          {basti.length > 0 ? (
+                          {shaka.length > 0 ? (
                             shaka.map((shaka, index) => (
                               <option key={index.id} value={shaka.id}>
                                 {shaka.name}
                               </option>
                             ))
                           ) : (
-                            <option value="">कोई शाखा नहीं</option>
+                            <option value="null">कोई शाखा नहीं</option>
                           )}
                         </select>
                         <div className="form-g">
@@ -493,8 +512,8 @@ export default function RegisterScreen() {
                         </div>
                         <div
                           style={{
-                            position: "absolute",
-                            overflow: "hidden",
+                            position: 'absolute',
+                            overflow: 'hidden',
                             width: 0,
                             height: 0,
                           }}
@@ -527,5 +546,5 @@ export default function RegisterScreen() {
         </section>
       </div>
     </div>
-  );
+  )
 }

@@ -1,22 +1,26 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./index.css";
-import RegisterScreen from "./screens/RegisterScreen.js";
-import SigninScreen from "./screens/SigninScreen.js";
-import HomeScreen from "./screens/HomeScreen.js";
-import Home from "./components/Home.js";
-import Authentication from "./screens/Authentication.js";
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
+import React from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import './index.css'
+import RegisterScreen from './screens/RegisterScreen.js'
+import SigninScreen from './screens/SigninScreen.js'
+import HomeScreen from './screens/HomeScreen.js'
+import WelcomeScreen from './screens/welcomeScreen.js'
+import Home from './components/Home.js'
+import Authentication from './screens/Authentication.js'
+import Container from 'react-bootstrap/Container'
+import Navbar from 'react-bootstrap/Navbar'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   return (
     <BrowserRouter>
       <>
+        <ToastContainer position="top-center" autoClose={600} limit={1} />
+
         <Navbar bg="dark" data-bs-theme="dark">
           <Container>
             <Navbar.Brand className="logo" href="#home">
-              RSS{" "}
+              RSS{' '}
               <img
                 src="/assets/Rss flag.png"
                 alt="Rss Flag"
@@ -34,11 +38,12 @@ function App() {
         <Route path="/" element={<Authentication />}></Route>
         <Route path="/register" element={<RegisterScreen />}></Route>
         <Route path="/dashboard" element={<HomeScreen />}></Route>
+        <Route path="/welcomepage" element={<WelcomeScreen />}></Route>
         <Route path="/signin" element={<SigninScreen></SigninScreen>}></Route>
         <Route path="/home" element={<Home></Home>}></Route>
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,36 +1,39 @@
-import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from 'react'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 export default function SigninScreen() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const [user, setUser] = useState({
-    phone_no: "",
-    password: "",
-  });
+    phone_no: '',
+    password: '',
+  })
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
 
-    setUser((prevState) => ({ ...prevState, [name]: value }));
-  };
+    setUser((prevState) => ({ ...prevState, [name]: value }))
+  }
 
   const submitHandler = async (e) => {
-    e.preventDefault();
-    console.log("user", user);
+    e.preventDefault()
+    console.log('user', user)
     try {
-      const loginCredentials = await axios.post(
+      const { data } = await axios.post(
         `http://localhost/CI/public/users/login`,
         user
-      );
-      navigate("/dashboard");
+      )
+      console.log('loginCredentials', data)
+      toast.success(data.message)
+      navigate('/dashboard')
     } catch (error) {
-      toast.error("User Not Found");
+      // console.log('error', error)
+      toast.error(error.response.data.data)
     }
-  };
+  }
 
   return (
     <div>
@@ -83,7 +86,6 @@ export default function SigninScreen() {
           </div>
         </section>
       </div>
-      <ToastContainer />
     </div>
-  );
+  )
 }

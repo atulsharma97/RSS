@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   BsCart3,
   BsGrid1X2Fill,
@@ -8,14 +8,14 @@ import {
   BsListCheck,
   BsMenuButtonWideFill,
   BsFillGearFill,
-} from "react-icons/bs";
-import { Link } from "react-router-dom";
+} from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 
 function Sidebar({ openSidebarToggle, OpenSidebar, onScreen }) {
   return (
     <aside
       id="sidebar"
-      className={openSidebarToggle ? "sidebar-responsive" : ""}
+      className={openSidebarToggle ? 'sidebar-responsive' : ''}
     >
       {/* <div className="sidebar-title">
         <div className="sidebar-brand">
@@ -28,7 +28,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar, onScreen }) {
 
       <ul className="sidebar-list">
         <li className="sidebar-list-item">
-          <Link to="/home" onClick={onScreen("home")}>
+          <Link to="/dashboard" onClick={onScreen('home')}>
             <BsGrid1X2Fill className="icon" /> Dashboard
           </Link>
         </li>
@@ -64,7 +64,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar, onScreen }) {
         </li> */}
       </ul>
     </aside>
-  );
+  )
 }
 
-export default Sidebar;
+export default Sidebar
