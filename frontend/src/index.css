@@ -804,12 +804,12 @@ input[type='checkbox']:not(old):checked + label > span:before {
 .input-title {
   padding-bottom: 20px;
 }
-.css-qvtrhg-MuiDataGrid-virtualScroller {
+/* .css-qvtrhg-MuiDataGrid-virtualScroller {
   height: 100%;
-}
+} */
+
 .data-table {
   margin: 0 auto;
-  margin-top: 50px !important;
 }
 
 .MuiDataGrid-columnHeader--alignCenter {
@@ -824,6 +824,7 @@ input[type='checkbox']:not(old):checked + label > span:before {
 }
 .MuiDataGrid-cell {
   padding-left: 20px !important;
+  justify-content: center !important;
 }
 .MuiDataGrid-root {
   box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.2);
@@ -864,4 +865,62 @@ input[type='checkbox']:not(old):checked + label > span:before {
   height: 50px;
   margin-bottom: 20px;
   background-color: white;
+}
+.MuiDataGrid-menuIcon {
+  visibility: visible !important;
+}
+.MuiDataGrid-columnHeaderTitleContainer {
+  justify-content: center !important;
+  visibility: visible !important;
+}
+.css-1hjagmf-MuiDataGrid-root
+  .MuiDataGrid-columnHeader:hover
+  .MuiDataGrid-menuIcon {
+  width: 0px !important;
+  visibility: visible;
+}
+
+.MuiDataGrid-columnSeparator {
+  visibility: visible !important;
+}
+
+.MuiDataGrid-iconButtonContainer {
+  visibility: visible !important;
+}
+.css-ltf0zy-MuiDataGrid-iconButtonContainer {
+  visibility: visible !important;
+}
+.css-ltf0zy-MuiDataGrid-iconButtonContainer {
+  width: unset !important;
+}
+/* MuiDataGrid-columnSeparator--sideRight */
+
+/* MuiDataGrid-columnHeader--sortable MuiDataGrid-withBorderColor */
+/* .MuiDataGrid-withBorderColor:hover {
+  transition: none !important;
+} */
+/*
+.MuiDataGrid-iconButtonContainer {
+  visibility: visible !important;
+}
+.css-ltf0zy-MuiDataGrid-iconButtonContainer {
+  visibility: visible !important;
+}
+.css-az8st9-MuiDataGrid-root
+  .MuiDataGrid-columnHeader:hover
+  .MuiDataGrid-iconButtonContainer {
+  width: auto;
+  visibility: visible !important;
+} */
+/* .css-az8st9-MuiDataGrid-root
+  .MuiDataGrid-columnHeader */
+.MuiDataGrid-iconButtonContainer {
+  visibility: visible !important;
+  width: auto;
+}
+.side-btn {
+  background: transparent;
+  border: none;
+  font-size: 25px;
+  color: black;
 }

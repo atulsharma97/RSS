@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { Store } from '../Store'
 
 export default function SigninScreen() {
+  const { state, dispatch: ctxDispatch } = useContext(Store)
+
   const navigate = useNavigate()
 
   const [user, setUser] = useState({
@@ -28,6 +31,8 @@ export default function SigninScreen() {
       )
       console.log('loginCredentials', data)
       toast.success(data.message)
+      ctxDispatch({ type: 'USER_SIGNIN', payload: data })
+      localStorage.setItem('userInfo', JSON.stringify(data))
       navigate('/dashboard')
     } catch (error) {
       // console.log('error', error)

@@ -6,17 +6,12 @@ import IndividualIntervalsExample from '../components/Slider'
 import Sidebar from '../components/Sidebar'
 import Home from '../components/Home'
 
-export default function HomeScreen() {
-  const [showScreen, setShowScreen] = useState('')
-
-  const screenHandler = (props) => {
-    setShowScreen(props)
-  }
+export default function HomeScreen({ isSideBarOpen }) {
   return (
     <>
       <div className="grid-container1">
-        <Sidebar onScreen={screenHandler} />
-        {showScreen == 'home' && <Home></Home>}
+        {isSideBarOpen && <Sidebar />}
+        <Home />
       </div>
     </>
   )

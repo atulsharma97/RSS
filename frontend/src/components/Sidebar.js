@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   BsCart3,
   BsGrid1X2Fill,
@@ -10,8 +10,15 @@ import {
   BsFillGearFill,
 } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
+import { Store } from '../Store'
 
-function Sidebar({ openSidebarToggle, OpenSidebar, onScreen }) {
+function Sidebar({ openSidebarToggle, OpenSidebar }) {
+  const { state, dispatch: ctxDispatch } = useContext(Store)
+  const signoutHandler = () => {
+    ctxDispatch({ type: 'USER_SIGNOUT' })
+    localStorage.removeItem('userInfo')
+    window.location.href = '/'
+  }
   return (
     <aside
       id="sidebar"
@@ -28,16 +35,16 @@ function Sidebar({ openSidebarToggle, OpenSidebar, onScreen }) {
 
       <ul className="sidebar-list">
         <li className="sidebar-list-item">
-          <Link to="/dashboard" onClick={onScreen('home')}>
+          <Link to="/dashboard">
             <BsGrid1X2Fill className="icon" /> Dashboard
           </Link>
         </li>
-        {/* <li className="sidebar-list-item">
-          <a href="">
-            <BsFillArchiveFill className="icon" /> Products
-          </a>
-        </li>
         <li className="sidebar-list-item">
+          <Link to="/" onClick={signoutHandler}>
+            <BsGrid1X2Fill className="icon" /> Logout
+          </Link>
+        </li>
+        {/*<li className="sidebar-list-item">
           <a href="">
             <BsFillGrid3X3GapFill className="icon" /> Categories
           </a>

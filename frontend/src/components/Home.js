@@ -4,7 +4,7 @@ import { DataGrid } from '@mui/x-data-grid'
 import { useNavigate } from 'react-router-dom'
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 70 },
+  { field: 'user_id', headerName: 'ID', width: 90 },
   { field: 'user_name', headerName: 'नाम', width: 250 },
   { field: 'age', headerName: 'उम्र', width: 130 },
   { field: 'address', headerName: 'पता', width: 200 },
@@ -52,6 +52,8 @@ function Home() {
   const [user, SetUser] = useState([])
   const navigate = useNavigate()
 
+  console.log('user', user)
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -73,9 +75,12 @@ function Home() {
 
   return (
     <>
-      <div style={{ height: '60vh', width: '70%' }} className="data-table">
+      <div
+        style={{ height: '84vh', width: '85%', padding: '20px' }}
+        className="data-table"
+      >
         <DataGrid
-          rows={user}
+          rows={user.map((user) => ({ ...user, id: user.user_id }))}
           columns={columns}
           initialState={{
             pagination: {
@@ -84,6 +89,14 @@ function Home() {
           }}
           pageSizeOptions={[5, 10]}
           checkboxSelection
+          sx={{
+            '.MuiDataGrid-iconButtonContainer': {
+              visibility: 'visible',
+            },
+            '.MuiDataGrid-sortIcon': {
+              opacity: 'inherit !important',
+            },
+          }}
         />
       </div>
     </>
