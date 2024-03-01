@@ -891,25 +891,42 @@ input[type="checkbox"]:not(old):checked + label > span:before {
   margin-bottom: 20px;
   background-color: white;
 }
-.MuiDataGrid-menuIcon {
+/* .MuiDataGrid-menuIcon {
   visibility: visible !important;
-}
-.MuiDataGrid-columnHeaderTitleContainer {
+} */
+/*.MuiDataGrid-columnHeaderTitleContainer {
   justify-content: center !important;
 }
 
 .css-1hjagmf-MuiDataGrid-root .MuiDataGrid-menuIcon {
   width: unset !important;
+<<<<<<< HEAD
 }
 .MuiDataGrid-columnHeaderTitle {
   font-weight: 700 !important;
 }
+=======
+} */
+/* MuiDataGrid-columnSeparator--sideRight */
+>>>>>>> c58b0b07a41b33a9bae1c82b8deb833e9f78fa37
 
 .css-1hjagmf-MuiDataGrid-root
   .MuiDataGrid-columnHeader
   .MuiDataGrid-iconButtonContainer {
+<<<<<<< HEAD
   width: unset !important;
 }
+=======
+  width: auto;
+  visibility: visible !important;
+} */
+/* .css-az8st9-MuiDataGrid-root
+  .MuiDataGrid-columnHeader */
+/* .MuiDataGrid-iconButtonContainer {
+  visibility: visible !important;
+  width: auto;
+} */
+>>>>>>> c58b0b07a41b33a9bae1c82b8deb833e9f78fa37
 .side-btn {
   background: transparent;
   border: none;
