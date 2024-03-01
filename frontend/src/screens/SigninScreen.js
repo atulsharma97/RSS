@@ -1,44 +1,46 @@
-import React, { useContext, useState } from 'react'
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import { Store } from '../Store'
+import React, { useContext, useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Store } from "../Store";
 
 export default function SigninScreen() {
-  const { state, dispatch: ctxDispatch } = useContext(Store)
-
-  const navigate = useNavigate()
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const [isSubmiting, setIsSubmiting] = useState(false);
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({
-    phone_no: '',
-    password: '',
-  })
+    phone_no: "",
+    password: "",
+  });
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
 
-    setUser((prevState) => ({ ...prevState, [name]: value }))
-  }
+    setUser((prevState) => ({ ...prevState, [name]: value }));
+  };
 
   const submitHandler = async (e) => {
-    e.preventDefault()
-    console.log('user', user)
+    e.preventDefault();
+    setIsSubmiting(true);
+    console.log("user", user);
     try {
       const { data } = await axios.post(
         `http://localhost/CI/public/users/login`,
         user
-      )
-      console.log('loginCredentials', data)
-      toast.success(data.message)
-      ctxDispatch({ type: 'USER_SIGNIN', payload: data })
-      localStorage.setItem('userInfo', JSON.stringify(data))
-      navigate('/dashboard')
+      );
+      console.log("loginCredentials", data);
+      toast.success(data.message);
+      ctxDispatch({ type: "USER_SIGNIN", payload: data });
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      navigate("/dashboard");
     } catch (error) {
       // console.log('error', error)
-      toast.error(error.response.data.data)
+      toast.error(error.response.data.data);
+      setIsSubmiting(false);
     }
-  }
+  };
 
   return (
     <div>
@@ -82,8 +84,13 @@ export default function SigninScreen() {
                     type="submit"
                     name="submit"
                     id="submit"
-                    className="form-submit form-submit2"
-                    value="लॉगिन "
+                    className={
+                      isSubmiting
+                        ? "form-submit-1 form-submit2"
+                        : "form-submit form-submit2"
+                    }
+                    disabled={isSubmiting}
+                    value={isSubmiting ? "लॉगिन हो रहा है..." : "लॉगिन "}
                   />
                 </div>
               </form>
@@ -92,5 +99,5 @@ export default function SigninScreen() {
         </section>
       </div>
     </div>
-  )
+  );
 }

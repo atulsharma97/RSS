@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext } from "react";
 import {
   BsCart3,
   BsGrid1X2Fill,
@@ -8,21 +8,23 @@ import {
   BsListCheck,
   BsMenuButtonWideFill,
   BsFillGearFill,
-} from 'react-icons/bs'
-import { Link } from 'react-router-dom'
-import { Store } from '../Store'
+} from "react-icons/bs";
+import { Link } from "react-router-dom";
+import { Store } from "../Store";
+import { FiLogOut } from "react-icons/fi";
+import { MdDashboard } from "react-icons/md";
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
-  const { state, dispatch: ctxDispatch } = useContext(Store)
+  const { state, dispatch: ctxDispatch } = useContext(Store);
   const signoutHandler = () => {
-    ctxDispatch({ type: 'USER_SIGNOUT' })
-    localStorage.removeItem('userInfo')
-    window.location.href = '/'
-  }
+    ctxDispatch({ type: "USER_SIGNOUT" });
+    localStorage.removeItem("userInfo");
+    window.location.href = "/";
+  };
   return (
     <aside
       id="sidebar"
-      className={openSidebarToggle ? 'sidebar-responsive' : ''}
+      className={openSidebarToggle ? "sidebar-responsive" : ""}
     >
       {/* <div className="sidebar-title">
         <div className="sidebar-brand">
@@ -34,16 +36,16 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
       </div> */}
 
       <ul className="sidebar-list">
-        <li className="sidebar-list-item">
-          <Link to="/dashboard">
-            <BsGrid1X2Fill className="icon" /> Dashboard
-          </Link>
-        </li>
-        <li className="sidebar-list-item">
-          <Link to="/" onClick={signoutHandler}>
-            <BsGrid1X2Fill className="icon" /> Logout
-          </Link>
-        </li>
+        <Link to="/dashboard">
+          <li className="sidebar-list-item">
+            <MdDashboard className="icon" /> Dashboard
+          </li>
+        </Link>
+        <Link to="/" onClick={signoutHandler}>
+          <li className="sidebar-list-item">
+            <FiLogOut className="icon" /> Logout
+          </li>
+        </Link>
         {/*<li className="sidebar-list-item">
           <a href="">
             <BsFillGrid3X3GapFill className="icon" /> Categories
@@ -71,7 +73,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
         </li> */}
       </ul>
     </aside>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;

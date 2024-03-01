@@ -16,7 +16,7 @@ export default function Navbars() {
               className="navicon"
             />
             <span>
-              <h5>रास्ट्रीय स्वयंसेवक संघ</h5>
+              <h5>रास्ट्रीय स्वयंसेवक संघ - उज्जैन महानगर</h5>
             </span>
           </Navbar.Brand>
           <Nav className=" ">
