@@ -10,7 +10,7 @@ export default function HomeScreen({ isSideBarOpen }) {
   return (
     <>
       <div className="grid-container1">
-        {isSideBarOpen && <Sidebar />}
+        {/* {isSideBarOpen && <Sidebar />} */}
         <Home />
       </div>
     </>

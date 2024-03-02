@@ -614,7 +614,7 @@ input[type='checkbox']:not(old):checked + label > span:before {
 #sidebar {
   grid-area: sidebar;
   height: 100%;
-  width: 15%;
+  width: 100%;
   background-color: #e5e5e5;
   overflow-y: auto;
   transition: all 0.5s;
@@ -992,4 +992,21 @@ input[type='checkbox']:not(old):checked + label > span:before {
 }
 .register-area {
   background-color: #fff4e1 !important;
+}
+.main {
+  width: 100%;
+  display: flex;
+}
+.sidebar-app {
+  width: 15%;
+}
+.Routes-app {
+  width: 85%;
+}
+.Routes-app-1 {
+  width: 100%;
+}
+
+.MuiDataGrid-withBorderColor {
+  border-radius: 2px !important;
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router'
 
 export default function WelcomeScreen() {
+  const baseUrl = process.env.REACT_APP_ASSETS_URL
   const navigate = useNavigate()
   const submitHandler = () => {
     navigate('/')
@@ -12,7 +13,7 @@ export default function WelcomeScreen() {
         <div className="welcome-success">
           <div className="success-img-div">
             <img
-              src="/assets/success.jpg"
+              src={baseUrl + `assets/success.jpg`}
               alt="success"
               className="success-img"
             />
