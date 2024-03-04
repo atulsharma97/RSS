@@ -6,6 +6,7 @@ import axios from "axios";
 import { Store } from "../Store";
 
 export default function SigninScreen() {
+  const apibaseUrl = process.env.REACT_APP_API_URL;
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const [isSubmiting, setIsSubmiting] = useState(false);
   const navigate = useNavigate();
@@ -26,10 +27,7 @@ export default function SigninScreen() {
     setIsSubmiting(true);
     console.log("user", user);
     try {
-      const { data } = await axios.post(
-        `http://localhost/CI/public/users/login`,
-        user
-      );
+      const { data } = await axios.post(`${apibaseUrl}users/login`, user);
       console.log("loginCredentials", data);
       toast.success(data.message);
       ctxDispatch({ type: "USER_SIGNIN", payload: data });

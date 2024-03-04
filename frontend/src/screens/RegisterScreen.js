@@ -5,8 +5,9 @@ import Navbar from "react-bootstrap/Navbar";
 import axios from "axios";
 
 export default function RegisterScreen() {
+  const apibaseUrl = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
-
+  const baseUrl = process.env.REACT_APP_ASSETS_URL;
   const [user, setUser] = useState({
     name: "",
     age: "",
@@ -83,14 +84,10 @@ export default function RegisterScreen() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const vibhagResponse = await axios.get(
-          "http://localhost/CI/public/get/vibhag"
-        );
-        const daitvaResponse = await axios.get(
-          "http://localhost/CI/public/get/daitva"
-        );
+        const vibhagResponse = await axios.get(`${apibaseUrl}get/vibhag`);
+        const daitvaResponse = await axios.get(`${apibaseUrl}get/daitva`);
         const shakhanagarResponse = await axios.get(
-          "http://localhost/CI/public/get/shaka-nagar"
+          `${apibaseUrl}get/shaka-nagar`
         );
         // const bastiResponse = await axios.get(
         //   'http://localhost/CI/public/get/basti'
@@ -98,9 +95,7 @@ export default function RegisterScreen() {
         // const shakaResponse = await axios.get(
         //   'http://localhost/CI/public/get/shaka'
         // )
-        const shikshanResponse = await axios.get(
-          "http://localhost/CI/public/get/shikshan"
-        );
+        const shikshanResponse = await axios.get(`${apibaseUrl}/get/shikshan`);
 
         console.log("vibhag response", vibhagResponse.data);
         // console.log("daitva response", daitvaResponse.data);
@@ -142,7 +137,7 @@ export default function RegisterScreen() {
   useEffect(() => {
     const fetchBastiData = async () => {
       const { data } = await axios.get(
-        `http://localhost/CI/public/get/basti/by-shaka-nagar/${selectedShakaNagar}`
+        `${apibaseUrl}get/basti/by-shaka-nagar/${selectedShakaNagar}`
       );
       setBasti(data.data);
     };
@@ -153,7 +148,7 @@ export default function RegisterScreen() {
   useEffect(() => {
     const fetchshakaData = async () => {
       const { data } = await axios.get(
-        `http://localhost/CI/public/get/shaka/by-basti/${selectedBasti}`
+        `${apibaseUrl}get/shaka/by-basti/${selectedBasti}`
       );
       setShaka(data.data);
     };
@@ -195,7 +190,7 @@ export default function RegisterScreen() {
       console.log("formdata", formDatas);
 
       const response = await axios.post(
-        "http://localhost/CI/public/users/create",
+        `${apibaseUrl}users/create`,
         formDatas,
         {
           headers: {
@@ -479,7 +474,7 @@ export default function RegisterScreen() {
                         ) : (
                           <label htmlFor="fileInput" className="uploadButton">
                             <img
-                              src="/assets/user.jpg"
+                              src={baseUrl + `assets/user.jpg`}
                               alt="Selected"
                               className="img-avtar"
                             />

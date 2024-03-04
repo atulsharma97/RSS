@@ -13,6 +13,9 @@ import { Link } from "react-router-dom";
 import { Store } from "../Store";
 import { FiLogOut } from "react-icons/fi";
 import { MdDashboard } from "react-icons/md";
+import { FaBuilding, FaCity, FaHome } from "react-icons/fa";
+import { HiClipboardList, HiUserGroup } from "react-icons/hi";
+import { motion } from "framer-motion";
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -36,16 +39,115 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
       </div> */}
 
       <ul className="sidebar-list">
-        <Link to="/dashboard">
-          <li className="sidebar-list-item">
-            <MdDashboard className="icon" /> Dashboard
-          </li>
-        </Link>
-        <Link to="/" onClick={signoutHandler}>
-          <li className="sidebar-list-item">
-            <FiLogOut className="icon" /> Logout
-          </li>
-        </Link>
+        <motion.li
+          whileHover={{
+            scale: 1.05,
+          }}
+          whileTap={{ scale: 0.9 }}
+          transition={{
+            type: "spring",
+            stiffness: 400,
+            damping: 10,
+          }}
+        >
+          <Link to="/dashboard">
+            <li className="sidebar-list-item">
+              <MdDashboard className="icon" /> Dashboard
+            </li>
+          </Link>
+        </motion.li>
+        <motion.li
+          whileHover={{
+            scale: 1.05,
+          }}
+          whileTap={{ scale: 0.9 }}
+          transition={{
+            type: "spring",
+            stiffness: 400,
+            damping: 10,
+          }}
+        >
+          <Link to="/nagar">
+            <li className="sidebar-list-item">
+              <FaCity className="icon" /> Nagar
+            </li>
+          </Link>
+        </motion.li>
+        <motion.li
+          whileHover={{
+            scale: 1.05,
+          }}
+          whileTap={{ scale: 0.9 }}
+          transition={{
+            type: "spring",
+            stiffness: 400,
+            damping: 10,
+          }}
+        >
+          <Link to="/dashboard">
+            <li className="sidebar-list-item">
+              <FaBuilding className="icon" /> Basti
+            </li>
+          </Link>
+        </motion.li>
+        <motion.li
+          whileHover={{
+            scale: 1.05,
+          }}
+          whileTap={{ scale: 0.9 }}
+          transition={{
+            type: "spring",
+            stiffness: 400,
+            damping: 10,
+          }}
+        >
+          <Link to="/dashboard">
+            <li className="sidebar-list-item">
+              <FaHome className="icon" /> Sakha
+            </li>
+          </Link>
+        </motion.li>
+
+        <motion.li
+          whileHover={{
+            scale: 1.05,
+          }}
+          whileTap={{ scale: 0.9 }}
+          transition={{
+            type: "spring",
+            stiffness: 400,
+            damping: 10,
+          }}
+        >
+          <Link to="/" onClick={signoutHandler}>
+            <li className="sidebar-list-item">
+              <FiLogOut className="icon" /> Logout
+            </li>
+          </Link>
+        </motion.li>
+
+        {/* <motion.li
+          whileHover={{
+            scale: 1.05,
+          }}
+          whileTap={{ scale: 0.9 }}
+          transition={{
+            type: 'spring',
+            stiffness: 400,
+            damping: 10,
+          }}
+        >
+          <Link
+            to="/agent"
+            // className={`${theme}-text-decoration-none`}
+            // onClick={handlSmallScreeneClick}
+          >
+            <li>
+              <HiUserGroup className="me-3 fs-5" />
+              Agent
+            </li>
+          </Link>
+        </motion.li> */}
         {/*<li className="sidebar-list-item">
           <a href="">
             <BsFillGrid3X3GapFill className="icon" /> Categories

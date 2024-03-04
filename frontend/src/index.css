@@ -614,7 +614,7 @@ input[type="checkbox"]:not(old):checked + label > span:before {
 #sidebar {
   grid-area: sidebar;
   height: 100%;
-  width: 15%;
+  /* width: 15%; */
   background-color: #e5e5e5;
   overflow-y: auto;
   transition: all 0.5s;
@@ -783,6 +783,7 @@ input[type="checkbox"]:not(old):checked + label > span:before {
 }
 .container2 {
   max-width: 50%;
+  padding-bottom: 54px;
   width: 100%;
   position: relative;
   margin: 0 auto;
@@ -834,6 +835,15 @@ input[type="checkbox"]:not(old):checked + label > span:before {
 } */
 
 .data-table {
+  height: "84vh" !important;
+  width: "85%" !important;
+  padding: "20px" !important;
+  margin: 0 auto;
+}
+.data-table1 {
+  height: "84vh" !important;
+  width: "100%" !important;
+  padding: "20px" !important;
   margin: 0 auto;
 }
 
@@ -841,9 +851,9 @@ input[type="checkbox"]:not(old):checked + label > span:before {
   display: none !important;
 }
 
-.MuiDataGrid-cell--withRenderer {
+/* .MuiDataGrid-cell--withRenderer {
   display: none !important;
-}
+} */
 .MuiDataGrid-columnHeader {
   padding-left: 20px !important;
 }
@@ -853,7 +863,8 @@ input[type="checkbox"]:not(old):checked + label > span:before {
 }
 .MuiDataGrid-root {
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
-  border-radius: 15px !important;
+  border-radius: 2px !important;
+  background-color: #fff !important;
 }
 
 .welcome-main-div {
@@ -950,5 +961,25 @@ input[type="checkbox"]:not(old):checked + label > span:before {
 }
 .register-area {
   background-color: #fff4e1 !important;
+}
 
+.MuiDataGrid-withBorderColor {
+  border-radius: 2px !important;
+}
+.main {
+  width: 100%;
+  display: flex;
+}
+.sidebar-app {
+  width: 15%;
+}
+.Routes-app {
+  width: 85%;
+  background-color: #fff4e1;
+}
+.Routes-app-1 {
+  width: 100%;
+}
+.css-de9k3v-MuiDataGrid-selectedRowCount {
+  visibility: hidden !important;
 }

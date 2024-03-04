@@ -4,23 +4,29 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 
 const columns = [
-  { field: "user_id", headerName: "आई डी", width: 135 },
-  { field: "user_name", headerName: "नाम", width: 250 },
-  { field: "age", headerName: "उम्र", width: 130 },
-  { field: "address", headerName: "पता", width: 200 },
   { field: "city", headerName: "शहर", width: 130 },
   { field: "nagar", headerName: "नगर", width: 130 },
-  { field: "shikshan_name", headerName: "शिक्षण", width: 130 },
-  { field: "accupation", headerName: "व्यवसाय", width: 130 },
-  { field: "vibhag_name", headerName: "विभाग", width: 130 },
-  { field: "daitva_name", headerName: "दायित्व", width: 130 },
-  { field: "shaka_nagar_name", headerName: "शाखा नगर", width: 130 },
-  { field: "basti_name", headerName: "बस्ती", width: 130 },
-  { field: "shaka_name", headerName: "शाखा", width: 130 },
-  { field: "phone_no", headerName: "मों.नंबर", width: 130 },
+  {
+    field: "button",
+    headerName: "Action",
+    width: 130,
+    renderCell: (params) => (
+      <button onClick={() => console.log("Button clicked!")}>Click me</button>
+    ),
+  },
 ];
-
-function Home() {
+const rows = [
+  { id: 1, city: "Snow", शहर: "Jon", age: 35 },
+  { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
+  { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
+  { id: 4, lastName: "Stark", firstName: "Arya", age: 16 },
+  { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
+  { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
+  { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
+  { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
+  { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
+];
+export default function NagarScreen() {
   const [user, SetUser] = useState([]);
   const apibaseUrl = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
@@ -43,9 +49,8 @@ function Home() {
       }
     };
 
-    fetchData(); // Call the fetchData function
-  }, []); // Ensure that the dependency array is provided and empty for a one-time effect
-
+    // fetchData(); // Call the fetchData function
+  }, []);
   return (
     <>
       <div
@@ -53,7 +58,8 @@ function Home() {
         className="data-table"
       >
         <DataGrid
-          rows={user.map((user) => ({ ...user, id: user.user_id }))}
+          //   rows={user.map((user) => ({ ...user, id: user.user_id }))}
+          rows={rows}
           columns={columns}
           getRowHeight={(params) => 40}
           initialState={{
@@ -62,6 +68,7 @@ function Home() {
             },
           }}
           pageSizeOptions={[5, 10]}
+          // checkboxSelection
           sx={{
             ".MuiDataGrid-iconButtonContainer": {
               visibility: "visible",
@@ -91,5 +98,3 @@ function Home() {
     </>
   );
 }
-
-export default Home;
