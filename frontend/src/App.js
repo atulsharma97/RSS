@@ -1,11 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './index.css'
-import RegisterScreen from './screens/RegisterScreen.js'
-import SigninScreen from './screens/SigninScreen.js'
-import HomeScreen from './screens/HomeScreen.js'
+import RegisterScreen from './components/Registration.js'
+import SigninScreen from './components/Signin.js'
 import WelcomeScreen from './screens/welcomeScreen.js'
-import Home from './components/Home.js'
 import Authentication from './screens/Authentication.js'
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
@@ -13,6 +11,9 @@ import { ToastContainer } from 'react-toastify'
 import { Store } from './Store.js'
 import ProtectedRoute from './components/ProtectedRoutes.js'
 import Sidebar from './components/Sidebar.js'
+import AllUsers from './screens/MahaNagarAdmin/Dashboard/AllUsers.js'
+import UserCreate from './screens/MahaNagarAdmin/Dashboard/UserCreate.js'
+import MakeUserAdmin from './screens/MahaNagarAdmin/Dashboard/MakeUserAdmin.js'
 
 function App() {
   const baseUrl = process.env.REACT_APP_ASSETS_URL
@@ -27,7 +28,9 @@ function App() {
     setIsSideBarOpen(!isSideBarOpen)
   }
   return (
-    <BrowserRouter basename="/rss/">
+    <BrowserRouter
+    //  basename="/rss/"
+    >
       <>
         <ToastContainer position="top-center" autoClose={600} limit={1} />
 
@@ -67,20 +70,30 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={
-                userInfo ? (
-                  <HomeScreen isSideBarOpen={isSideBarOpen} />
-                ) : (
-                  <Authentication />
-                )
-              }
+              element={userInfo ? <AllUsers /> : <Authentication />}
             ></Route>
             <Route path="/register" element={<RegisterScreen />}></Route>
             <Route
               path="/dashboard"
               element={
                 <ProtectedRoute>
-                  <HomeScreen isSideBarOpen={isSideBarOpen} />{' '}
+                  <AllUsers />
+                </ProtectedRoute>
+              }
+            ></Route>
+            <Route
+              path="/dashboard/create-users"
+              element={
+                <ProtectedRoute>
+                  <UserCreate />
+                </ProtectedRoute>
+              }
+            ></Route>
+            <Route
+              path="/dashboard/make-useradmin/:id"
+              element={
+                <ProtectedRoute>
+                  <MakeUserAdmin />
                 </ProtectedRoute>
               }
             ></Route>

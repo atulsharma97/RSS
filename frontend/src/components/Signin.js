@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { Store } from '../Store'
 
-export default function SigninScreen() {
+export default function Signin() {
   const { state, dispatch: ctxDispatch } = useContext(Store)
   const [isSubmiting, setIsSubmiting] = useState(false)
   const navigate = useNavigate()

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const columns = [
   { field: 'user_id', headerName: 'आई डी', width: 135 },
@@ -18,22 +18,6 @@ const columns = [
   { field: 'basti_name', headerName: 'बस्ती', width: 130 },
   { field: 'shaka_name', headerName: 'शाखा', width: 130 },
   { field: 'phone_no', headerName: 'मों.नंबर', width: 130 },
-
-  // {
-  //   field: "age",
-  //   headerName: "Age",
-  //   type: "number",
-  //   width: 90,
-  // },
-  // {
-  //   field: 'fullName',
-  //   headerName: 'Full name',
-  //   description: 'This column has a value getter and is not sortable.',
-  //   sortable: false,
-  //   width: 160,
-  //   valueGetter: (params) =>
-  //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-  // },
 ]
 
 // const rows = [
@@ -48,12 +32,14 @@ const columns = [
 //   { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
 // ];
 
-function Home() {
+const AllUsers = () => {
   const [user, SetUser] = useState([])
   const navigate = useNavigate()
   const apibaseUrl = process.env.REACT_APP_API_URL
 
-  console.log('user', user)
+  const handleEdit = (id) => {
+    navigate(`/dashboard/make-useradmin/${id}`)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,13 +62,42 @@ function Home() {
 
   return (
     <>
+      <ul className="nav-style1">
+        <li>
+          <Link to="/dashboard">
+            <a className="active">Users</a>
+          </Link>
+        </li>
+        <li>
+          <Link to="/dashboard/create-users">
+            <a>Create</a>
+          </Link>
+        </li>
+      </ul>
       <div
         style={{ height: '84vh', width: '100%', padding: '20px' }}
         className="data-table"
       >
         <DataGrid
           rows={user.map((user) => ({ ...user, id: user.user_id }))}
-          columns={columns}
+          columns={[
+            ...columns,
+            {
+              field: 'MakeAdmin',
+              headerName: 'Make Admin',
+              width: 130,
+              renderCell: (params) => {
+                return (
+                  <button
+                    onClick={() => handleEdit(params.row.id)}
+                    className="btn btn-primary button-color"
+                  >
+                    Make Admin
+                  </button>
+                )
+              },
+            },
+          ]}
           getRowHeight={(params) => 40}
           initialState={{
             pagination: {
@@ -98,6 +113,22 @@ function Home() {
             '.MuiDataGrid-sortIcon': {
               opacity: 'inherit !important',
             },
+            // '.MuiDataGrid-virtualScroller': {
+            //   '&::-webkit-scrollbar': {
+            //     width: '5px',
+            //     height: '5px',
+            //   },
+            //   '&::-webkit-scrollbar-thumb': {
+            //     backgroundColor: '#ff9933', // Customize the color of the scrollbar thumb
+            //     borderRadius: '6px', // Customize the border radius of the scrollbar thumb
+            //   },
+            //   '&::-webkit-scrollbar-thumb:hover': {
+            //     backgroundColor: '#ff9933', // Customize the color of the scrollbar thumb on hover
+            //   },
+            //   '&::-webkit-scrollbar-track': {
+            //     backgroundColor: '#e5e5e5', // Customize the color of the scrollbar track
+            //   },
+            // },
           }}
         />
       </div>
@@ -105,4 +136,4 @@ function Home() {
   )
 }
 
-export default Home
+export default AllUsers

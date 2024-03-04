@@ -3,8 +3,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
-export default function RegisterScreen() {
+export default function Registration() {
   const apibaseUrl = process.env.REACT_APP_API_URL
   const navigate = useNavigate()
   const baseUrl = process.env.REACT_APP_ASSETS_URL
@@ -202,6 +203,9 @@ export default function RegisterScreen() {
       navigate('/welcomepage')
     } catch (error) {
       setIsSubmiting(false)
+      console.log('error', error)
+
+      toast.error(error.response.data.message)
       // console.log("formDatas", formDatas);
       // navigate("/");
     }

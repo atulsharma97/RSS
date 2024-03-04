@@ -5,7 +5,7 @@ export default function WelcomeScreen() {
   const baseUrl = process.env.REACT_APP_ASSETS_URL
   const navigate = useNavigate()
   const submitHandler = () => {
-    navigate('/')
+    navigate('/dashboard')
   }
   return (
     <div className="welcome-main-div">

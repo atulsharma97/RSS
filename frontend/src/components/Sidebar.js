@@ -88,8 +88,8 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
               <MdDashboard className="icon" /> Basti
             </li>
           </Link>
-        </motion.li>
-        <motion.li
+        </motion.li>*/}
+        {/* <motion.li
           whileHover={{
             scale: 1.05,
           }}
@@ -100,9 +100,9 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
             damping: 10,
           }}
         >
-          <Link to="/dashboard">
+          <Link to="/register">
             <li className="sidebar-list-item">
-              <MdDashboard className="icon" /> Sakha
+              <MdDashboard className="icon" /> Add Users
             </li>
           </Link>
         </motion.li> */}

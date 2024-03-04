@@ -109,7 +109,7 @@ body {
   line-height: 1.8;
   color: #222;
   font-weight: 400;
-  font-family: 'Montserrat';
+  font-family: 'monospace';
 }
 .signup {
   background-repeat: no-repeat;
@@ -842,7 +842,7 @@ input[type='checkbox']:not(old):checked + label > span:before {
 }
 
 .MuiDataGrid-cell--withRenderer {
-  display: none !important;
+  /* display: none !important; */
 }
 .MuiDataGrid-columnHeader {
   padding-left: 20px !important;
@@ -854,6 +854,9 @@ input[type='checkbox']:not(old):checked + label > span:before {
 .MuiDataGrid-root {
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
   border-radius: 15px !important;
+}
+.MuiDataGrid-cellCheckbox {
+  display: none !important;
 }
 
 .welcome-main-div {
@@ -1009,4 +1012,48 @@ input[type='checkbox']:not(old):checked + label > span:before {
 
 .MuiDataGrid-withBorderColor {
   border-radius: 2px !important;
+}
+
+.active {
+  color: red;
+}
+
+/* css for nav for pages  */
+.nav-style1 {
+  list-style-type: none;
+  margin: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.nav-style1 li {
+  display: inline-block;
+  margin-right: 20px;
+  padding-bottom: 10px;
+}
+
+.nav-style1 li a.active,
+.nav-style1 li a:hover {
+  border-bottom: 2px solid #ff9933 !important;
+  color: #ff9933 !important;
+}
+.nav-style1 li a {
+  text-decoration: none;
+  position: relative;
+  color: #000 !important;
+  padding-bottom: 13px;
+  border-bottom: 2px solid transparent;
+  font-size: 16px;
+}
+.button-color {
+  background: orange;
+  border: 0;
+  height: 30px;
+  font-size: 14px;
+}
+
+.button-color:hover {
+  background: orange;
+  border: 0;
+  height: 30px;
+  font-size: 14px;
 }
