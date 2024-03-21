@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import RegisterScreen from "./RegisterScreen";
-import SigninScreen from "./SigninScreen";
-import { motion } from "framer-motion";
+import React, { useState } from 'react'
+import Registration from '../components/Registration'
+import Signin from '../components/Signin'
+import { motion } from 'framer-motion'
 
 const Authentication = () => {
-  const signup = "register";
-  const [register, setRegister] = useState(signup ? "register" : "login");
-  const [isOn, setIsOn] = useState(false);
-  const toggleSwitch = () => setIsOn(!isOn);
+  const signup = 'register'
+  const [register, setRegister] = useState(signup ? 'register' : 'login')
+  const [isOn, setIsOn] = useState(false)
+  const toggleSwitch = () => setIsOn(!isOn)
 
   return (
     <>
-      {" "}
+      {' '}
       <div className="register-area ptb-100">
         <div className="container">
           <div className="row align-items-center">
@@ -22,7 +22,7 @@ const Authentication = () => {
             </div> */}
             <div className="">
               <div className="register-form">
-                {register == "register" ? (
+                {register == 'register' ? (
                   <motion.h2
                     initial={{ scale: 0 }}
                     animate={{ scale: 1, x: 0 }}
@@ -44,9 +44,9 @@ const Authentication = () => {
                   <li className="nav-item" role="presentation">
                     <motion.button
                       className={`nav-link ${
-                        register == "register" ? "active" : ""
+                        register == 'register' ? 'active' : ''
                       }`}
-                      onClick={() => setRegister("register")}
+                      onClick={() => setRegister('register')}
                       whileHover={{
                         scale: 1.3,
                         transition: { duration: 1 },
@@ -54,7 +54,7 @@ const Authentication = () => {
                       whileTap={{ scale: 0.8 }}
                       layout
                       transition={{
-                        type: "spring",
+                        type: 'spring',
                       }}
                     >
                       पंजीयन
@@ -63,17 +63,17 @@ const Authentication = () => {
                   <li className="nav-item" role="presentation">
                     <motion.button
                       className={`nav-link ${
-                        register == "login" ? "active" : ""
+                        register == 'login' ? 'active' : ''
                       }`}
                       type="button"
-                      onClick={() => setRegister("login")}
+                      onClick={() => setRegister('login')}
                       whileHover={{
                         scale: 1.3,
                         transition: { duration: 1 },
                       }}
                       whileTap={{ scale: 0.8 }}
                       transition={{
-                        type: "spring",
+                        type: 'spring',
                       }}
                     >
                       लॉगिन
@@ -82,11 +82,7 @@ const Authentication = () => {
                 </ul>
 
                 <div className="tab-content" id="myTabContent">
-                  {register == "register" ? (
-                    <RegisterScreen />
-                  ) : (
-                    <SigninScreen />
-                  )}
+                  {register == 'register' ? <Registration /> : <Signin />}
                 </div>
               </div>
             </div>
@@ -94,7 +90,7 @@ const Authentication = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Authentication;
+export default Authentication

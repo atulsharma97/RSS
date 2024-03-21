@@ -3,14 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import axios from "axios";
+import { toast } from "react-toastify";
 
-export default function RegisterScreen() {
+export default function Registration() {
   const apibaseUrl = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
   const baseUrl = process.env.REACT_APP_ASSETS_URL;
+
   const [user, setUser] = useState({
     name: "",
-    age: "",
+    age: null,
     phone_no: "",
     address: "",
     city: "",
@@ -25,8 +27,23 @@ export default function RegisterScreen() {
     daitva: "",
     daitva_of: "",
   });
+  // const [userBack, setUserBack] = useState({
+  //   name: "",
+  //   phone_no: "",
+  //   address: "",
+  //   city: "",
+  //   nagar: "",
+  //   occupation: "",
+  //   shaka_nagar: "",
+  //   image: "",
+  //   basti: "",
+  //   shaka: "",
+  //   shikshan: "",
+  //   vibhag: "",
+  //   daitva: "",
+  //   daitva_of: "",
+  // });
   const [imageShow, setImageShow] = useState("");
-  // const [phoneNo, setphoneNo] = useState("");
   const [vibhag, setvibhag] = useState([]);
   const [daitva, setDaitva] = useState([]);
   const [filteredDaitva, setFilteredDaitva] = useState([]);
@@ -36,15 +53,74 @@ export default function RegisterScreen() {
   const [shikshan, setShikshan] = useState([]);
   const [selectedShakaNagar, setSelectedShakaNagar] = useState("");
   const [selectedBasti, setSelectedBasti] = useState("");
+  const [age, setAge] = useState("");
   const [isSubmiting, setIsSubmiting] = useState(false);
+  const [suggestions, setSuggestions] = useState([]);
+  const [latestInputValue, setLatestInputValue] = useState("");
+  const [activeInput, setActiveInput] = useState(null);
 
-  console.log("selectedShakaNagar", selectedShakaNagar);
-  console.log("basti", basti);
-  console.log("filteredDaitva", filteredDaitva);
-  // console.log("phoneNo", phoneNo);
+  // const handleBlur = async (e) => {
+  //   try {
+  //     const { name, value } = e.target;
+  //     console.log("value ", value);
+  //     const originalValue = userBack[name] || value;
+  //     const lowerCaseValue = originalValue.toLowerCase();
+  //     const response = await fetch(
+  //       `https://api.mymemory.translated.net/get?q=${lowerCaseValue}&langpair=en|hi`
+  //     );
+
+  //     const data = await response.json();
+  //     const matches = data.matches;
+  //     const matchWithIdZero = matches.find((match) => match.id === 0);
+  //     // const convertedData = matchWithIdZero ? matchWithIdZero.translation : "";
+  //     let translation = "";
+  //     if (matchWithIdZero) {
+  //       translation = decodeUnicode(matchWithIdZero.translation);
+  //     } else {
+  //       translation = originalValue; // Use original value if translation is not available
+  //     }
+
+  //     // const translation = decodeUnicode(convertedData) || "";
+  //     console.log("translation ", translation);
+  //     setUser((prevState) => ({ ...prevState, [name]: translation }));
+  //     e.target.value = translation;
+  //     handleChange(e);
+  //   } catch (error) {
+  //     console.error("Error translating text:", error);
+  //   }
+  // };
+  // // Function to decode Unicode escape sequences
+  // const decodeUnicode = (str) => {
+  //   return str.replace(/\\u[\dA-F]{4}/gi, (match) =>
+  //     String.fromCharCode(parseInt(match.replace(/\\u/g, ""), 16))
+  //   );
+  // };
+
+  const debounce = (func, delay) => {
+    let timeoutId;
+    return function (...args) {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(() => {
+        func.apply(this, args);
+      }, delay);
+    };
+  };
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
+
+    setActiveInput(name);
+    if (
+      name === "name" ||
+      name === "address" ||
+      name === "city" ||
+      name === "nagar"
+    ) {
+      // Apply translation only for specific input fields
+      debounceTranslation(value);
+    }
 
     if (name === "shaka_nagar") {
       setUser((prevState) => ({ ...prevState, basti: "" }));
@@ -59,9 +135,9 @@ export default function RegisterScreen() {
       setShaka([]);
       setSelectedBasti(valuebasti);
     }
-    if (name === "shaka") {
-      // setShaka(value !== 'null' ? value : null)
-    }
+    // if (name === "shaka") {
+    //   // setShaka(value !== 'null' ? value : null)
+    // }
 
     if (name === "image") {
       setUser((prevState) => ({
@@ -70,15 +146,64 @@ export default function RegisterScreen() {
       }));
       setImageShow(window.URL.createObjectURL(files[0]));
     } else {
-      setUser((prevState) => ({ ...prevState, [name]: value }));
-      if (name === "daitva_of") {
-        setUser((prevState) => ({ ...prevState, daitva: "" }));
-        const sortedDaitva = daitva.filter((item) => item.daitva_of == value);
-        console.log("karan", sortedDaitva);
-
-        setFilteredDaitva(sortedDaitva);
+      let newValue = value;
+      if (name === "age" && !isNaN(value)) {
+        if (value < 0) {
+          newValue = 0;
+        } else if (value >= 150) {
+          newValue = 150;
+        }
+        setUser((prevState) => ({
+          ...prevState,
+          age: newValue,
+        }));
+      } else {
+        setUser((prevState) => ({ ...prevState, [name]: value }));
+        // setUserBack((prevState) => ({ ...prevState, [name]: value }));
+        if (name === "daitva_of") {
+          setUser((prevState) => ({ ...prevState, daitva: "" }));
+          setUser((prevState) => ({ ...prevState, daitva_of: value }));
+          const sortedDaitva = daitva.filter((item) => item.daitva_of == value);
+          setFilteredDaitva(sortedDaitva);
+        }
       }
     }
+    setLatestInputValue(value);
+  };
+
+  useEffect(() => {
+    if (latestInputValue) {
+      debounceTranslation(latestInputValue);
+    }
+  }, [latestInputValue]);
+
+  const debounceTranslation = debounce(async (value) => {
+    try {
+      const response = await fetch(
+        `https://api.mymemory.translated.net/get?q=${value}&langpair=en|hi`
+      );
+      const data = await response.json();
+      const matches = data.matches;
+      displaySuggestions(matches);
+    } catch (error) {
+      console.error("Error fetching translation suggestions:", error);
+    }
+  }, 300);
+
+  const displaySuggestions = (matches) => {
+    const suggestions = matches.map((match) => match.translation);
+    setSuggestions(suggestions);
+  };
+
+  const selectSuggestion = (suggestion) => {
+    if (activeInput) {
+      setUser((prevState) => ({
+        ...prevState,
+        [activeInput]: suggestion,
+      }));
+      setSuggestions([]);
+    }
+    // setSuggestions([]);
   };
 
   useEffect(() => {
@@ -89,21 +214,9 @@ export default function RegisterScreen() {
         const shakhanagarResponse = await axios.get(
           `${apibaseUrl}get/shaka-nagar`
         );
-        // const bastiResponse = await axios.get(
-        //   'http://localhost/CI/public/get/basti'
-        // )
-        // const shakaResponse = await axios.get(
-        //   'http://localhost/CI/public/get/shaka'
-        // )
         const shikshanResponse = await axios.get(`${apibaseUrl}/get/shikshan`);
-
-        console.log("vibhag response", vibhagResponse.data);
-        // console.log("daitva response", daitvaResponse.data);
         if (vibhagResponse.data.status === 200) {
           setvibhag(vibhagResponse.data.data);
-
-          // Redirect to another page upon success
-          // navigate('/')
         }
         if (daitvaResponse.data.status === 200) {
           setDaitva(daitvaResponse.data.data);
@@ -111,29 +224,17 @@ export default function RegisterScreen() {
         if (shakhanagarResponse.data.status === 200) {
           setShakhanagar(shakhanagarResponse.data.data);
         }
-        // if (shakhanagarResponse.data.status === 200) {
-        //   setBasti(bastiResponse.data.data)
-        // }
-        // if (shakaResponse.data.status === 200) {
-        //   setShaka(shakaResponse.data.data)
-        // }
         if (shikshanResponse.data.status === 200) {
           setShikshan(shikshanResponse.data.data);
         }
       } catch (error) {
-        // Handle errors
         console.error("Error fetching data:", error);
       }
     };
 
-    fetchData(); // Call the fetchData function
-  }, []); // Ensure that the dependency array is provided and empty for a one-time effect
-  // useEffect(() => {
-  //   const fetchShakaData = async () => {
-  //     await axios.get(`http://localhost/CI/public/get/shaka/by-basti`);
-  //   };
-  //   fetchShakaData(selectedBasti);
-  // }, [selectedBasti]);
+    fetchData();
+  }, []);
+
   useEffect(() => {
     const fetchBastiData = async () => {
       const { data } = await axios.get(
@@ -157,16 +258,15 @@ export default function RegisterScreen() {
     }
   }, [selectedBasti]);
 
-  console.log("outer user", user);
-
   const submitHandler = async (e) => {
     e.preventDefault();
     setIsSubmiting(true);
-    console.log("user", user);
+    if (user.phone_no.length !== 10) {
+      alert("कृपया 10 अंकों का नंबर डाले");
+      setIsSubmiting(false);
+      return; // Exit function early if phone number length is not 10
+    }
     try {
-      const phoneNo = user.phone_no.startsWith("+91")
-        ? user.phone_no
-        : "+91" + user.phone_no;
       const formDatas = new FormData();
 
       formDatas.append("file", user.image);
@@ -190,7 +290,7 @@ export default function RegisterScreen() {
       console.log("formdata", formDatas);
 
       const response = await axios.post(
-        `${apibaseUrl}users/create`,
+        "http://localhost/CI/public/users/create",
         formDatas,
         {
           headers: {
@@ -201,6 +301,10 @@ export default function RegisterScreen() {
       navigate("/welcomepage");
     } catch (error) {
       setIsSubmiting(false);
+      console.log("error", error);
+
+      toast.error(error.response.data.message);
+      // toast.error(error.message);
       // console.log("formDatas", formDatas);
       // navigate("/");
     }
@@ -235,7 +339,22 @@ export default function RegisterScreen() {
                             placeholder="नाम"
                             required
                             onChange={handleChange}
+                            value={user.name}
                           />
+                          {activeInput === "name" &&
+                            suggestions.length > 0 &&
+                            user.name !== "" && (
+                              <ul className="suggestions-dropdown">
+                                {suggestions.map((suggestion, index) => (
+                                  <li
+                                    key={index}
+                                    onClick={() => selectSuggestion(suggestion)}
+                                  >
+                                    {suggestion}
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
                         </div>
                         <div className="form-g">
                           <input
@@ -246,6 +365,10 @@ export default function RegisterScreen() {
                             placeholder="उम्र"
                             required
                             onChange={handleChange}
+                            value={user.age}
+                            min="0"
+                            max="150"
+                            // autoFocus
                           />
                         </div>
 
@@ -258,7 +381,22 @@ export default function RegisterScreen() {
                             placeholder="पता"
                             required
                             onChange={handleChange}
+                            value={user.address}
                           />
+                          {activeInput === "address" &&
+                            suggestions.length > 0 &&
+                            user.address !== "" && (
+                              <ul className="suggestions-dropdown">
+                                {suggestions.map((suggestion, index) => (
+                                  <li
+                                    key={index}
+                                    onClick={() => selectSuggestion(suggestion)}
+                                  >
+                                    {suggestion}
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
                         </div>
                         <div className="form-g">
                           <input
@@ -269,7 +407,22 @@ export default function RegisterScreen() {
                             placeholder="शहर"
                             required
                             onChange={handleChange}
+                            value={user.city}
                           />
+                          {activeInput === "city" &&
+                            suggestions.length > 0 &&
+                            user.city !== "" && (
+                              <ul className="suggestions-dropdown">
+                                {suggestions.map((suggestion, index) => (
+                                  <li
+                                    key={index}
+                                    onClick={() => selectSuggestion(suggestion)}
+                                  >
+                                    {suggestion}
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
                         </div>
 
                         <div className="form-g">
@@ -281,7 +434,22 @@ export default function RegisterScreen() {
                             placeholder="नगर"
                             required
                             onChange={handleChange}
+                            value={user.nagar}
                           />
+                          {activeInput === "nagar" &&
+                            suggestions.length > 0 &&
+                            user.nagar !== "" && (
+                              <ul className="suggestions-dropdown">
+                                {suggestions.map((suggestion, index) => (
+                                  <li
+                                    key={index}
+                                    onClick={() => selectSuggestion(suggestion)}
+                                  >
+                                    {suggestion}
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
                         </div>
                         <select
                           name="shikshan"
@@ -295,7 +463,7 @@ export default function RegisterScreen() {
                             शिक्षण चुनें
                           </option>
                           {shikshan.map((shikshan, index) => (
-                            <option key={index.id} value={shikshan.id}>
+                            <option key={index} value={shikshan.id}>
                               {shikshan.name}
                             </option>
                           ))}
@@ -335,7 +503,7 @@ export default function RegisterScreen() {
                             विभाग चुनें
                           </option>
                           {vibhag.map((vibhag, index) => (
-                            <option key={index.id} value={vibhag.id}>
+                            <option key={index} value={vibhag.id}>
                               {vibhag.name}
                             </option>
                           ))}
@@ -371,7 +539,7 @@ export default function RegisterScreen() {
                           </option>
                           {filteredDaitva.length > 0 ? (
                             filteredDaitva.map((daitva, index) => (
-                              <option key={index.id} value={daitva.id}>
+                              <option key={index} value={daitva.id}>
                                 {daitva.name}
                               </option>
                             ))
@@ -392,7 +560,7 @@ export default function RegisterScreen() {
                             शाखा नगर चुनें
                           </option>
                           {shakhanagar.map((shakanagar, index) => (
-                            <option key={index.id} value={shakanagar.id}>
+                            <option key={index} value={shakanagar.id}>
                               {shakanagar.name}
                             </option>
                           ))}
@@ -412,7 +580,7 @@ export default function RegisterScreen() {
                           </option>
                           {basti.length > 0 ? (
                             basti.map((basti, index) => (
-                              <option key={index.id} value={basti.id}>
+                              <option key={index} value={basti.id}>
                                 {basti.name}
                               </option>
                             ))
@@ -435,7 +603,7 @@ export default function RegisterScreen() {
                           </option>
                           {shaka.length > 0 ? (
                             shaka.map((shaka, index) => (
-                              <option key={index.id} value={shaka.id}>
+                              <option key={index} value={shaka.id}>
                                 {shaka.name}
                               </option>
                             ))

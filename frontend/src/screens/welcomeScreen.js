@@ -1,18 +1,19 @@
-import React from 'react'
-import { useNavigate } from 'react-router'
+import React from "react";
+import { useNavigate } from "react-router";
 
 export default function WelcomeScreen() {
-  const navigate = useNavigate()
+  const baseUrl = process.env.REACT_APP_ASSETS_URL;
+  const navigate = useNavigate();
   const submitHandler = () => {
-    navigate('/')
-  }
+    navigate("/");
+  };
   return (
     <div className="welcome-main-div">
       <div className="welcome-div">
         <div className="welcome-success">
           <div className="success-img-div">
             <img
-              src="/assets/success.jpg"
+              src={baseUrl + `assets/success.jpg`}
               alt="success"
               className="success-img"
             />
@@ -24,5 +25,5 @@ export default function WelcomeScreen() {
         </div>
       </div>
     </div>
-  )
+  );
 }

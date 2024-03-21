@@ -105,11 +105,13 @@ h2 {
 body {
   font-size: 14px;
   margin: 0 !important;
-  overflow-y: scroll;
+  /* overflow-y: auto; */
   line-height: 1.8;
   color: #222;
   font-weight: 400;
-  font-family: "Montserrat";
+  /* font-family: "monospace"; */
+  font-family: "Martel", serif;
+  background-color: #fff4e1 !important;
 }
 .signup {
   background-repeat: no-repeat;
@@ -173,6 +175,7 @@ body {
 .signup-content {
   background: #fff;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  font-family: "Roboto Slab", serif;
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -412,6 +415,7 @@ input[type="checkbox"]:not(old):checked + label > span:before {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  font-family: "Noto Serif Devanagari", serif !important;
   align-items: center;
   padding: 0 1rem;
   background-color: #ff9933 !important;
@@ -420,6 +424,9 @@ input[type="checkbox"]:not(old):checked + label > span:before {
   background-image: -o-linear-gradient(to left, #74ebd5, #9face6);
   background-image: -webkit-linear-gradient(to left, #74ebd5, #9face6);
   background-image: linear-gradient(to left, #74ebd5, #9face6); */
+  position: sticky;
+  top: 0px;
+  z-index: 100;
 }
 .logo {
   font-size: 2rem;
@@ -435,11 +442,23 @@ input[type="checkbox"]:not(old):checked + label > span:before {
   gap: 10px 15px;
   width: 100%;
 }
+.input-field1 {
+  display: flex !important;
+  justify-content: center;
+  flex-wrap: wrap !important;
+  gap: 10px 15px;
+  width: 100%;
+}
 .form-g {
   cursor: pointer;
   width: 25% !important;
   margin-top: 20px;
   margin-left: 45px;
+}
+.form-g1 {
+  cursor: pointer;
+  width: 25% !important;
+  margin: 0 auto;
 }
 .fields {
   margin-top: 5px;
@@ -472,7 +491,17 @@ input[type="checkbox"]:not(old):checked + label > span:before {
 .left {
   display: flex;
   flex-wrap: wrap;
-
+  margin-left: 30px;
+}
+.left2 {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 30px;
+  justify-content: center;
+}
+.left1 {
+  display: flex;
+  /* flex-wrap: wrap; */
   margin-left: 30px;
 }
 .main-img {
@@ -541,7 +570,7 @@ input[type="checkbox"]:not(old):checked + label > span:before {
 
 .img-avtar {
   width: 100% !important;
-  height: 30vh;
+  height: 100%;
   border: 1px solid #ebebeb;
 }
 .upload-btn {
@@ -556,6 +585,7 @@ input[type="checkbox"]:not(old):checked + label > span:before {
 .uploadButton {
   cursor: pointer;
   color: #fff;
+  width: 100%;
 }
 
 /*sidebar css*/
@@ -614,9 +644,11 @@ input[type="checkbox"]:not(old):checked + label > span:before {
 #sidebar {
   grid-area: sidebar;
   height: 100%;
-  /* width: 15%; */
+  min-height: 85vh;
+  width: 100%;
   background-color: #e5e5e5;
   overflow-y: auto;
+  overflow-x: hidden;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
 }
@@ -642,26 +674,31 @@ input[type="checkbox"]:not(old):checked + label > span:before {
 .sidebar-list {
   padding: 0;
   list-style-type: none;
+  font-family: "Roboto Slab", serif;
 }
 
 .sidebar-list-item {
   padding: 20px 20px 20px 20px;
   font-size: 18px;
+  width: 210px;
 }
 
 .sidebar-list-item:hover {
   background-color: rgb(108 101 101 / 20%);
   cursor: pointer;
+  font-family: "Roboto Slab", serif;
 }
 
 .sidebar-list-item > a {
   text-decoration: none;
   color: #9e9ea4;
+  font-family: "Roboto Slab", serif;
 }
 
 .sidebar-responsive {
   display: inline !important;
   position: absolute;
+
   /*
     we want the z-index of the sidebar higher so that
     the charts are not showing over the sidebar 
@@ -748,7 +785,7 @@ input[type="checkbox"]:not(old):checked + label > span:before {
   }
 
   #sidebar {
-    display: none;
+    /* display: none; */
   }
 
   .menu-icon {
@@ -773,8 +810,6 @@ input[type="checkbox"]:not(old):checked + label > span:before {
     margin-top: 30px;
   }
 }
-
-/* Extra Small <= 576px */
 
 @media screen and (max-width: 576px) {
   .hedaer-left {
@@ -822,6 +857,15 @@ input[type="checkbox"]:not(old):checked + label > span:before {
   margin-left: 80px;
   font-weight: bold;
 }
+.heading1 {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  font-weight: bolder;
+}
+.nagar-details {
+  text-align: center;
+  margin-bottom: 40px;
+}
 .padding {
   border-top: 2px solid #eee;
   margin-right: 30px;
@@ -830,20 +874,50 @@ input[type="checkbox"]:not(old):checked + label > span:before {
 .input-title {
   padding-bottom: 20px;
 }
-/* .css-qvtrhg-MuiDataGrid-virtualScroller {
-  height: 100%;
-} */
+.css-qvtrhg-MuiDataGrid-virtualScroller {
+  min-height: 205px;
+}
 
 .data-table {
-  height: "84vh" !important;
-  width: "85%" !important;
-  padding: "20px" !important;
+  /* height: 84vh !important;
+  width: 85% !important;
+  padding: 20px !important; */
+  margin: 0 auto;
+}
+.data-table-nagar {
+  /* height: 84vh !important; */
+  width: 40% !important;
+  padding: 20px !important;
+  margin: 0 auto;
+}
+.data-table-basti {
+  /* height: 84vh !important; */
+  width: 50% !important;
+  padding: 20px !important;
+  margin: 0 auto;
+}
+.data-table-shakha {
+  /* height: 84vh !important; */
+  width: 60% !important;
+  padding: 20px !important;
+  margin: 0 auto;
+}
+.data-table-daitva {
+  /* height: 84vh !important; */
+  width: 50% !important;
+  padding: 20px !important;
+  margin: 0 auto;
+}
+.data-table-vibhag {
+  /* height: 84vh !important; */
+  width: 50% !important;
+  padding: 20px !important;
   margin: 0 auto;
 }
 .data-table1 {
-  height: "84vh" !important;
-  width: "100%" !important;
-  padding: "20px" !important;
+  height: 84vh !important;
+  width: 100% !important;
+  padding: 20px !important;
   margin: 0 auto;
 }
 
@@ -851,9 +925,9 @@ input[type="checkbox"]:not(old):checked + label > span:before {
   display: none !important;
 }
 
-/* .MuiDataGrid-cell--withRenderer {
-  display: none !important;
-} */
+.MuiDataGrid-cell--withRenderer {
+  /* display: none !important; */
+}
 .MuiDataGrid-columnHeader {
   padding-left: 20px !important;
 }
@@ -865,6 +939,12 @@ input[type="checkbox"]:not(old):checked + label > span:before {
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
   border-radius: 2px !important;
   background-color: #fff !important;
+}
+.MuiDataGrid-cellCheckbox {
+  display: none !important;
+}
+.MuiDataGrid-cellCheckbox {
+  display: none !important;
 }
 
 .welcome-main-div {
@@ -962,24 +1042,181 @@ input[type="checkbox"]:not(old):checked + label > span:before {
 .register-area {
   background-color: #fff4e1 !important;
 }
-
-.MuiDataGrid-withBorderColor {
-  border-radius: 2px !important;
+.MuiDataGrid-columnHeaders {
+  background: #e9e9e9 !important;
+}
+.register-area {
+  background-color: #fff4e1 !important;
 }
 .main {
   width: 100%;
   display: flex;
 }
 .sidebar-app {
-  width: 15%;
+  width: 20%;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  max-height: calc(100vh - 102px);
+  transition: width 0.3s ease; /* Add transition property */
+}
+.sidebar-app-close {
+  width: 0%;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  max-height: calc(100vh - 102px);
+  transition: width 0.3s ease; /* Add transition property */
 }
 .Routes-app {
-  width: 85%;
-  background-color: #fff4e1;
+  width: 100%;
+  overflow-y: auto;
+  background: #fff;
+  max-height: calc(100vh - 102px);
 }
 .Routes-app-1 {
   width: 100%;
+  overflow-y: auto;
+  background: #fff;
+  max-height: calc(100vh - 102px);
 }
-.css-de9k3v-MuiDataGrid-selectedRowCount {
-  visibility: hidden !important;
+
+.MuiDataGrid-withBorderColor {
+  border-radius: 2px !important;
 }
+
+.active {
+  color: red;
+}
+
+/* css for nav for pages  */
+.nav-style1 {
+  list-style-type: none;
+  margin: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.nav-style1 li {
+  display: inline-block;
+  margin-right: 20px;
+  padding-bottom: 10px;
+}
+
+.nav-style1 li a.active,
+.nav-style1 li a:hover {
+  border-bottom: 2px solid #ff9933 !important;
+  color: #ff9933 !important;
+}
+.nav-style1 li a {
+  text-decoration: none;
+  position: relative;
+  color: #000 !important;
+  padding-bottom: 13px;
+  border-bottom: 2px solid transparent;
+  font-size: 16px;
+}
+.button-color {
+  background: orange;
+  border: 0;
+  height: 30px;
+  font-size: 14px;
+}
+
+.button-color:hover {
+  background: orange;
+  border: 0;
+  height: 30px;
+  font-size: 14px;
+}
+.css-zylse7-MuiButtonBase-root-MuiIconButton-root.Mui-disabled {
+  background-color: #ff9933 !important;
+  color: #fff !important;
+}
+
+.css-zylse7-MuiButtonBase-root-MuiIconButton-root {
+  margin-left: 10px !important;
+  padding: 5px !important;
+  background-color: #ff9933 !important;
+  color: #fff !important;
+}
+.loading {
+  text-align: center;
+  padding: 150px 0px;
+}
+/*nagar-table*/
+.nagar-table {
+  background-color: #5e5e5e;
+}
+.main-nagartable {
+  margin: 0 auto;
+  width: 60%;
+}
+.main-nagartable1 {
+  width: 100%;
+}
+.main-nagartable2 {
+  width: 100%;
+}
+.basti-dropdown {
+  background-color: rgb(204, 204, 204);
+  border: 1px solid rgb(80, 79, 79);
+}
+.shakha-dropdown {
+  /* background-color: #fff4e1; */
+  border: 1px solid rgb(80, 79, 79);
+}
+
+table {
+  border-collapse: collapse;
+  /* width: 100%; */
+  border-spacing: 50px 10px;
+}
+td,
+th {
+  padding: 8px; /* Adjust the padding value as needed */
+  border: 1px solid #dddddd;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}
+.basti-col-pad {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.suggestions-dropdown {
+  position: absolute;
+  z-index: 1000; /* Ensure dropdown is above other elements */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-height: 200px; /* Limit dropdown height */
+  overflow-y: auto; /* Enable scrolling if there are many suggestions */
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.suggestions-dropdown li {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.suggestions-dropdown li:hover {
+  background-color: #f0f0f0;
+}
+@media screen and (max-width: 768px) {
+  .sidebar-app {
+    width: unset;
+  }
+}
+/* .vibhag-table1 .MuiDataGrid-virtualScrollerRenderZone {
+  width: 100%;
+}
+.vibhag-table1 .MuiDataGrid-row {
+  width: 100% !important;
+}
+.vibhag-table1 .MuiDataGrid-cell {
+  width: 100%;
+  max-width: none !important;
+} */

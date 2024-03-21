@@ -1,0 +1,299 @@
+@media screen and (max-width: 1250px) {
+  .container {
+    max-width: 950px !important ;
+  }
+  .data-table-nagar {
+    min-height: 250px;
+  }
+  .data-table-daitva {
+    /* height: 84vh !important; */
+    width: 55% !important;
+    padding: 20px !important;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .container {
+    max-width: 850px !important ;
+  }
+  .data-table-basti {
+    width: 60% !important;
+    min-height: 250px;
+  }
+  .data-table-shakha {
+    width: 65% !important;
+    padding: 20px !important;
+    margin: 0 auto;
+    min-height: 250px;
+  }
+  .data-table-daitva {
+    /* height: 84vh !important; */
+    width: 60% !important;
+    padding: 20px !important;
+    margin: 0 auto;
+  }
+  .data-table-vibhag {
+    /* height: 84vh !important; */
+    width: 45% !important;
+    padding: 20px !important;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 996px) {
+  .input-field {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    flex-direction: column-reverse;
+    gap: 10px 15px;
+    width: 100%;
+  }
+  .main-img {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .input-img {
+    width: 25%;
+    overflow: hidden;
+    padding-bottom: 25px;
+    margin-left: 50px;
+  }
+  .left {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 0px;
+  }
+  .container {
+    max-width: 850px !important ;
+  }
+  .side-btn {
+    position: absolute;
+    right: 10px;
+  }
+  .sidebar-app {
+    position: absolute;
+    width: 200px;
+    right: 0px;
+    z-index: 99;
+    overflow-y: auto;
+    transition: width 0.3s ease;
+    /* width: unset !important; */
+  }
+  .sidebar-app-close {
+    position: absolute;
+    width: 0px;
+    right: 0px;
+    z-index: 99;
+    overflow-y: auto;
+    transition: width 0.3s ease;
+  }
+  .data-table-nagar {
+    min-height: 250px;
+    width: 50% !important;
+    padding: 20px !important;
+    margin: 0 auto;
+  }
+  .data-table-basti {
+    width: 70% !important;
+    min-height: 250px;
+  }
+  .data-table-shakha {
+    width: 75% !important;
+    padding: 20px !important;
+    margin: 0 auto;
+    min-height: 250px;
+  }
+  .data-table-daitva {
+    /* height: 84vh !important; */
+    width: 70% !important;
+    padding: 20px !important;
+    margin: 0 auto;
+  }
+  .data-table-vibhag {
+    /* height: 84vh !important; */
+    width: 60% !important;
+    padding: 20px !important;
+    margin: 0 auto;
+  }
+  .left1 {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 0px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .submit1 {
+    width: 20% !important;
+    padding: 12px 20px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .form-g {
+    cursor: pointer;
+    width: 40% !important;
+    margin-top: 20px;
+    margin-left: 35px;
+  }
+  .form-g1 {
+    width: 30% !important;
+  }
+  .signup {
+    padding: 0px;
+  }
+  .input-title {
+    font-size: 1rem;
+    padding-bottom: 10px;
+  }
+  .heading {
+    margin-left: 40px;
+    font-weight: bold;
+  }
+  .register-tab .nav-item .nav-link {
+    width: 100%;
+    padding: 8px 50px;
+    font-size: 15px;
+  }
+  .form-submit {
+    width: 30%;
+    padding: 12px 15px;
+  }
+  /* .container {
+    max-width: 450px !important;
+  } */
+  .input-img {
+    width: 32%;
+  }
+  .container2 {
+    max-width: 65%;
+  }
+  .data-table-nagar {
+    min-height: 250px;
+    width: 70% !important;
+    padding: 20px !important;
+    margin: 0 auto;
+  }
+  .data-table-basti {
+    width: 85% !important;
+    min-height: 250px;
+  }
+  .data-table-shakha {
+    width: 90% !important;
+    padding: 20px !important;
+    margin: 0 auto;
+    min-height: 250px;
+  }
+  .data-table-daitva {
+    /* height: 84vh !important; */
+    width: 90% !important;
+    padding: 20px !important;
+    margin: 0 auto;
+  }
+  .data-table-vibhag {
+    /* height: 84vh !important; */
+    width: 80% !important;
+    padding: 20px !important;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 580px) {
+  /* .sidebar-app {
+    width: 35%;
+  } */
+}
+@media screen and (max-width: 520px) {
+  .form-g {
+    cursor: pointer;
+    width: 100% !important;
+    margin-top: 20px;
+    margin-left: 25px;
+  }
+  .form-g1 {
+    width: 40% !important;
+  }
+  .form-submit {
+    width: 30%;
+    padding: 8px 15px;
+  }
+  .upload-btn {
+    padding: 2px;
+  }
+  .input-img {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .photo-div {
+    height: 40%;
+    width: 40%;
+    margin: 0 auto;
+  }
+  .container2 {
+    max-width: 80%;
+  }
+  /* .container {
+    max-width: 300px !important;
+  } */
+  .data-table-nagar {
+    min-height: 250px;
+    width: 100% !important;
+    padding: 20px !important;
+    margin: 0 auto;
+  }
+  .data-table-basti {
+    width: 100% !important;
+    min-height: 250px;
+  }
+  .data-table-shakha {
+    width: 100% !important;
+    padding: 20px !important;
+    margin: 0 auto;
+    min-height: 250px;
+  }
+  .data-table-daitva {
+    /* height: 84vh !important; */
+    width: 100% !important;
+    padding: 20px !important;
+    margin: 0 auto;
+  }
+  .data-table-vibhag {
+    /* height: 84vh !important; */
+    width: 100% !important;
+    padding: 20px !important;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 425px) {
+  .register-tab .nav-item .nav-link {
+    padding: 6px 40px;
+    font-size: 14px;
+  }
+  .register-tab {
+    margin-bottom: 20px;
+  }
+  .form-submit {
+    width: 75%;
+  }
+  .form-g {
+    margin-left: 0px;
+  }
+  .container2 {
+    max-width: 90%;
+  }
+  /* .container {
+    max-width: 270px !important;
+  } */
+}
+@media screen and (max-width: 375px) {
+  .photo-div {
+    width: 50%;
+  }
+  .form-g1 {
+    width: 50% !important;
+  }
+  .h5,
+  h5 {
+    font-size: 1rem !important;
+  }
+  /* .container {
+    max-width: 200px !important;
+  } */
+}

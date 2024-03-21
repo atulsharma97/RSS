@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Store } from "../../../Store";
 
 const columns = [
   { field: "user_id", headerName: "आई डी", width: 135 },
@@ -20,18 +21,23 @@ const columns = [
   { field: "phone_no", headerName: "मों.नंबर", width: 130 },
 ];
 
-function Home() {
+const BastiUser = () => {
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { userInfo } = state;
   const [user, SetUser] = useState([]);
-  const apibaseUrl = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
-
-  console.log("user", user);
+  const apibaseUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(`${apibaseUrl}users`);
-        console.log("response", data);
+        const { data } = await axios.post(
+          `${apibaseUrl}users/by-nagar-basti/${userInfo.data.admin_of}`,
+          {
+            admin_of: userInfo.data.role,
+          }
+        );
+
         if (data.status === 200) {
           SetUser(data.data);
           // Redirect to another page upon success
@@ -54,7 +60,7 @@ function Home() {
       >
         <DataGrid
           rows={user.map((user) => ({ ...user, id: user.user_id }))}
-          columns={columns}
+          columns={[...columns]}
           getRowHeight={(params) => 40}
           initialState={{
             pagination: {
@@ -62,6 +68,7 @@ function Home() {
             },
           }}
           pageSizeOptions={[5, 10]}
+          checkboxSelection
           sx={{
             ".MuiDataGrid-iconButtonContainer": {
               visibility: "visible",
@@ -90,6 +97,6 @@ function Home() {
       </div>
     </>
   );
-}
+};
 
-export default Home;
+export default BastiUser;

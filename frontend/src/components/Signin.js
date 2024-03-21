@@ -5,11 +5,12 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Store } from "../Store";
 
-export default function SigninScreen() {
-  const apibaseUrl = process.env.REACT_APP_API_URL;
+export default function Signin() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const [isSubmiting, setIsSubmiting] = useState(false);
+  const { userInfo } = state;
   const navigate = useNavigate();
+  const apibaseUrl = process.env.REACT_APP_API_URL;
 
   const [user, setUser] = useState({
     phone_no: "",
@@ -25,14 +26,21 @@ export default function SigninScreen() {
   const submitHandler = async (e) => {
     e.preventDefault();
     setIsSubmiting(true);
-    console.log("user", user);
+
     try {
       const { data } = await axios.post(`${apibaseUrl}users/login`, user);
-      console.log("loginCredentials", data);
       toast.success(data.message);
       ctxDispatch({ type: "USER_SIGNIN", payload: data });
       localStorage.setItem("userInfo", JSON.stringify(data));
-      navigate("/dashboard");
+      if (data.data.role === "mahaNagarAdmin") {
+        navigate("/");
+      } else if (data.data.role === "nagarAdmin") {
+        navigate("/");
+      } else if (data.data.role === "bastiAdmin") {
+        navigate("/");
+      }
+
+      // navigate("/dashboard");
     } catch (error) {
       // console.log('error', error)
       toast.error(error.response.data.data);

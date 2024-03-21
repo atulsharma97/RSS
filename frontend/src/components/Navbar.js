@@ -8,7 +8,7 @@ export default function Navbars() {
     <>
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand className="logo" href="#home">
+          <Navbar.Brand className="logo" href="">
             RSS{" "}
             <img
               src="/assets/Rss flag.png"
